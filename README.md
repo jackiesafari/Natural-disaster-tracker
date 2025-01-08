@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+Tracker Map:
+
+1. It provides immediate ways for users to contribute to relief efforts, which can be appealing to VCs as it shows real-world impact and user engagement.
+2. The donation links are disaster-specific, ensuring relevance and potentially increasing the likelihood of user action.
+
+
+This feature not only makes the application more useful for end-users but also demonstrates a clear path to monetization or partnerships with relief organizations, which could be attractive to potential investors.
+
 ## Getting Started
 
 First, run the development server:

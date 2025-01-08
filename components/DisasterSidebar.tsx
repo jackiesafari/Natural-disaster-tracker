@@ -84,7 +84,7 @@ export default function DisasterSidebar({ disaster }: DisasterSidebarProps) {
               <Button
                 key={index}
                 variant="outline"
-                className="w-full justify-between text-white hover:text-gray-900"
+                className="w-full justify-between bg-gray-700 text-white hover:bg-gray-600 border-gray-600"
                 asChild
               >
                 <a href={link.url} target="_blank" rel="noopener noreferrer">
@@ -99,4 +99,3 @@ export default function DisasterSidebar({ disaster }: DisasterSidebarProps) {
     </div>
   )
 }
-
