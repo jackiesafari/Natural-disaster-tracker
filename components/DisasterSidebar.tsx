@@ -18,6 +18,7 @@ interface DisasterSidebarProps {
 // Add donation links for each disaster type
 const donationLinks = {
   Wildfire: [
+    { name: 'Connecting Los Angeles County 2-1-1', url: 'https://linktr.ee/211la'},
     { name: 'American Red Cross', url: 'https://www.redcross.org/donate/donation.html/' },
     { name: 'California Fire Foundation', url: 'https://www.cafirefoundation.org/programs/supplying-aid-to-victims-of-emergency/' },
   ],
