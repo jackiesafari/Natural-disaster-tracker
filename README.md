@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Tracker Map:
 
-1. It provides immediate ways for users to contribute to relief efforts, which can be appealing to VCs as it shows real-world impact and user engagement.
+1. It provides immediate ways for users to contribute to relief efforts, showing real-world impact and user engagement.
 2. The donation links are disaster-specific, ensuring relevance and potentially increasing the likelihood of user action.
 
 
