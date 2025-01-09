@@ -1,10 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
+import 'leaflet/dist/leaflet.css'
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import { Icon } from 'leaflet'
 import DisasterSidebar from './DisasterSidebar'
-import { ExternalLink } from 'lucide-react'
+//import { ExternalLink } from 'lucide-react'
 
 // Mock data for natural disasters
 const disasters = [
@@ -67,6 +68,25 @@ function ZoomHandler({ setZoom }: { setZoom: (zoom: number) => void }) {
   })
   return null
 }
+
+//interface DisasterSidebarProps {
+  //disaster: {
+    //id: number;
+    //type: string;
+    //location: string;
+    //coordinates: number[];
+    //description: string;
+    //imageUrl: string;
+    //severity: string;
+    //affectedArea?: string;
+    //evacuationStatus?: string;
+    //windSpeed?: string;
+    //stormSurge?: string;
+    //depth?: string;
+    //aftershocks?: string;
+    //[key: string]: string | number | number[] | undefined;
+  //} | null;
+//}
 
 export default function TrackerMap() {
   const [selectedDisaster, setSelectedDisaster] = useState<typeof disasters[0] | null>(null)

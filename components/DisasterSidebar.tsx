@@ -7,13 +7,21 @@ import Image from 'next/image'
 
 interface DisasterSidebarProps {
   disaster: {
-    type: string
-    location: string
-    description: string
-    imageUrl: string
-    severity: string
-    [key: string]: string
-  } | null
+    id: number;
+    type: string;
+    location: string;
+    description: string;
+    imageUrl: string;
+    severity: string;
+    coordinates: number[];
+    affectedArea?: string;
+    evacuationStatus?: string;
+    windSpeed?: string;
+    stormSurge?: string;
+    depth?: string;
+    aftershocks?: string;
+    [key: string]: string | number | number[] | undefined;
+  } | null;
 }
 
 // Add donation links for each disaster type
@@ -65,11 +73,10 @@ export default function DisasterSidebar({ disaster }: DisasterSidebarProps) {
         </CardHeader>
         <CardContent>
         <Image 
-    src="https://i.imgur.com/ZxYMwBd.jpeg"
- 
+    src= "https://i.imgur.com/ZxYMwBd.jpeg"
     width={300} 
     height={200} 
-    alt="placeholder" 
+    alt= "placeholder"
 />
 
           <h3 className="font-bold mb-2 text-gray-300">Location</h3>

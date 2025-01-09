@@ -6,7 +6,7 @@ Tracker Map:
 2. The donation links are disaster-specific, ensuring relevance and potentially increasing the likelihood of user action.
 
 
-This feature not only makes the application more useful for end-users but also demonstrates a clear path to monetization or partnerships with relief organizations, which could be attractive to potential investors.
+This feature not only makes the application more useful for end-users but also demonstrates a clear path to partnerships with relief organizations, which could be attractive to grow in something larger in the future.
 
 ## Getting Started
 
