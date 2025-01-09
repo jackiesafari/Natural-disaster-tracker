@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 
 interface DisasterSidebarProps {
   disaster: {
@@ -63,7 +64,14 @@ export default function DisasterSidebar({ disaster }: DisasterSidebarProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <img src={disaster.imageUrl} alt={disaster.type} className="w-full h-48 object-cover mb-4 rounded" />
+        <Image 
+    src="https://i.imgur.com/ZxYMwBd.jpeg"
+ 
+    width={300} 
+    height={200} 
+    alt="placeholder" 
+/>
+
           <h3 className="font-bold mb-2 text-gray-300">Location</h3>
           <p className="mb-4 text-white">{disaster.location}</p>
           <h3 className="font-bold mb-2 text-gray-300">Description</h3>
