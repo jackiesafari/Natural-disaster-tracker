@@ -218,9 +218,14 @@ export default function TrackerMap() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">Natural Disaster Command</p>
-            <h1 className="mt-2 text-2xl font-semibold leading-tight text-white sm:text-3xl">
-              Real-time Incident Intelligence
-            </h1>
+            <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <h1 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                Real-time Incident Intelligence
+              </h1>
+              <Badge className="w-fit border-orange-300/35 bg-orange-400/12 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-orange-100">
+                Demo mode
+              </Badge>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
