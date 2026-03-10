@@ -1,33 +1,36 @@
 import '@/styles/globals.css'
+import localFont from 'next/font/local'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
-const inter = Inter({ subsets: ['latin'] })
+const geistSans = localFont({
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
+})
+
+const geistMono = localFont({
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
+})
 
 export const metadata: Metadata = {
-  title: 'Tracker Map',
-  description: 'Real-time disaster monitoring and analysis',
+  title: 'Natural Disaster Tracker',
+  description: 'Live incident overview for wildfire, hurricane, and earthquake response events.',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossOrigin=""
-        />
-      </head>
-      <SpeedInsights/>
-      <body className={inter.className}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   )
 }
-

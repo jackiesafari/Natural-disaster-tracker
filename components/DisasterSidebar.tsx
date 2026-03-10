@@ -1,118 +1,143 @@
-import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ExternalLink } from 'lucide-react'
-import Image from 'next/image'
+import { Activity, ArrowUpRight, Clock4, MapPin, Siren, Users } from 'lucide-react'
+
+import type { DisasterEvent } from './TrackerMap'
+import { Badge } from './ui/badge'
+import { Button } from './ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 
 interface DisasterSidebarProps {
-  disaster: {
-    id: number;
-    type: string;
-    location: string;
-    description: string;
-    imageUrl: string;
-    severity: string;
-    coordinates: number[];
-    affectedArea?: string;
-    evacuationStatus?: string;
-    windSpeed?: string;
-    stormSurge?: string;
-    depth?: string;
-    aftershocks?: string;
-    [key: string]: string | number | number[] | undefined;
-  } | null;
+  disasters: DisasterEvent[]
+  selectedDisaster: DisasterEvent | null
+  onSelectDisaster: (disaster: DisasterEvent) => void
+  resetFilters: () => void
 }
 
-// Add donation links for each disaster type
-const donationLinks = {
-  Wildfire: [
-    { name: 'Connecting 2-1-1 LA County', url: 'https://linktr.ee/211la'},
-    { name: 'County of Los Angeles', url: 'https://www.lacounty.gov/'},
-    { name: 'American Red Cross', url: 'https://www.redcross.org/donate/donation.html/' },
-    { name: 'California Fire Foundation', url: 'https://www.cafirefoundation.org/programs/supplying-aid-to-victims-of-emergency/' },
-  ],
-  Hurricane: [
-    { name: 'American Red Cross', url: 'https://www.redcross.org/donate/donation.html/' },
-    { name: 'Direct Relief', url: 'https://www.directrelief.org/place/usa/' },
-  ],
-  Earthquake: [
-    { name: 'American Red Cross', url: 'https://www.redcross.org/donate/donation.html/' },
-    { name: 'UNICEF USA', url: 'https://www.unicefusa.org/mission/emergencies/earthquakes' },
-  ],
+const severityStyles = {
+  Severe: 'border-rose-300/30 bg-rose-400/10 text-rose-100',
+  High: 'border-amber-300/30 bg-amber-400/10 text-amber-100',
+  Moderate: 'border-cyan-300/30 bg-cyan-400/10 text-cyan-100',
 }
 
-export default function DisasterSidebar({ disaster }: DisasterSidebarProps) {
-  if (!disaster) {
-    return (
-      <div className="w-[30%] p-4 bg-gray-800 text-white">
-        <p className="text-center text-gray-400">Select an event on the map to view details</p>
-      </div>
-    )
-  }
-
-  const getSeverityColor = (severity: string) => {
-    switch (severity.toLowerCase()) {
-      case 'high':
-      case 'severe':
-        return 'bg-red-500'
-      case 'moderate':
-        return 'bg-yellow-500'
-      default:
-        return 'bg-blue-500'
-    }
-  }
-
+export default function DisasterSidebar({
+  disasters,
+  selectedDisaster,
+  onSelectDisaster,
+  resetFilters,
+}: DisasterSidebarProps) {
   return (
-    <div className="w-[30%] p-4 bg-gray-800 overflow-y-auto">
-      <Card className="bg-gray-900 text-white border-gray-700">
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <CardTitle className="text-2xl">{disaster.type}</CardTitle>
-            <Badge className={`${getSeverityColor(disaster.severity)} text-white`}>{disaster.severity}</Badge>
-          </div>
-        </CardHeader>
-        <CardContent>
-        <Image 
-    src= "https://i.imgur.com/ZxYMwBd.jpeg"
-    width={300} 
-    height={200} 
-    alt= "placeholder"
-/>
+    <aside className="glass-panel h-full overflow-hidden rounded-3xl">
+      <div className="grid h-full grid-rows-[auto,1fr]">
+        <Card className="border-0 bg-transparent text-white shadow-none">
+          <CardHeader className="space-y-3 p-4 sm:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <CardTitle className="text-xl">Event Brief</CardTitle>
+              <Badge className="border-white/15 bg-white/5 text-slate-200">{disasters.length} listed</Badge>
+            </div>
 
-          <h3 className="font-bold mb-2 text-gray-300">Location</h3>
-          <p className="mb-4 text-white">{disaster.location}</p>
-          <h3 className="font-bold mb-2 text-gray-300">Description</h3>
-          <p className="mb-4 text-white">{disaster.description}</p>
-          {Object.entries(disaster).map(([key, value]) => {
-            if (!['id', 'type', 'location', 'coordinates', 'description', 'imageUrl', 'severity'].includes(key)) {
-              return (
-                <div key={key} className="mb-2">
-                  <h3 className="font-bold text-gray-300 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</h3>
-                  <p className="text-white">{value}</p>
+            {selectedDisaster ? (
+              <div className="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-lg font-semibold">{selectedDisaster.title}</h3>
+                  <Badge className={severityStyles[selectedDisaster.severity]}>{selectedDisaster.severity}</Badge>
                 </div>
-              )
-            }
-            return null
-          })}
-          <h3 className="font-bold mt-6 mb-3 text-gray-300">Donate to Relief Efforts</h3>
-          <div className="flex flex-col space-y-2">
-            {donationLinks[disaster.type as keyof typeof donationLinks].map((link, index) => (
+
+                <div className="mt-3 space-y-2 text-sm text-slate-300">
+                  <p className="inline-flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-cyan-300" />
+                    {selectedDisaster.location}
+                  </p>
+                  <p className="inline-flex items-center gap-2">
+                    <Clock4 className="h-4 w-4 text-cyan-300" />
+                    Updated {selectedDisaster.updatedAt}
+                  </p>
+                  <p className="inline-flex items-center gap-2">
+                    <Users className="h-4 w-4 text-cyan-300" />
+                    {selectedDisaster.peopleImpacted} people impacted
+                  </p>
+                  <p className="inline-flex items-center gap-2">
+                    <Siren className="h-4 w-4 text-cyan-300" />
+                    {selectedDisaster.status}
+                  </p>
+                </div>
+
+                <p className="mt-4 text-sm text-slate-200">{selectedDisaster.summary}</p>
+
+                <div className="mt-4 space-y-2 rounded-xl border border-white/10 bg-slate-900/60 p-3">
+                  {Object.entries(selectedDisaster.details).map(([key, value]) => (
+                    <div key={key} className="flex items-center justify-between gap-3 text-sm">
+                      <span className="text-slate-300">{key}</span>
+                      <span className="font-medium text-white">{value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {selectedDisaster.resources.map((resource) => (
+                    <Button
+                      key={resource.href}
+                      asChild
+                      variant="outline"
+                      className="justify-between border-white/15 bg-slate-900/70 text-slate-100 hover:bg-slate-800"
+                    >
+                      <a href={resource.href} target="_blank" rel="noopener noreferrer">
+                        {resource.label}
+                        <ArrowUpRight className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-slate-950/45 p-4 text-sm text-slate-300">
+                No event selected. Pick a marker or event to view details.
+              </div>
+            )}
+          </CardHeader>
+        </Card>
+
+        <CardContent className="overflow-y-auto p-4 pt-0 sm:p-5 sm:pt-0">
+          {disasters.length === 0 ? (
+            <div className="rounded-2xl border border-dashed border-white/20 bg-slate-950/45 p-5 text-sm text-slate-300">
+              <p>No events match the current filters.</p>
               <Button
-                key={index}
+                onClick={resetFilters}
                 variant="outline"
-                className="w-full justify-between bg-gray-700 text-white hover:bg-gray-600 border-gray-600"
-                asChild
+                className="mt-3 border-white/20 bg-transparent text-slate-100 hover:bg-slate-800"
               >
-                <a href={link.url} target="_blank" rel="noopener noreferrer">
-                  {link.name}
-                  <ExternalLink className="h-4 w-4 ml-2" />
-                </a>
+                Reset filters
               </Button>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {disasters.map((disaster) => {
+                const isSelected = selectedDisaster?.id === disaster.id
+
+                return (
+                  <button
+                    key={disaster.id}
+                    onClick={() => onSelectDisaster(disaster)}
+                    className={`w-full rounded-2xl border p-3 text-left transition ${
+                      isSelected
+                        ? 'border-cyan-300/40 bg-cyan-400/10'
+                        : 'border-white/10 bg-slate-950/45 hover:border-white/20 hover:bg-slate-900/70'
+                    }`}
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <p className="font-medium text-white">{disaster.title}</p>
+                      <Badge className={severityStyles[disaster.severity]}>{disaster.severity}</Badge>
+                    </div>
+                    <p className="text-sm text-slate-300">{disaster.summary}</p>
+                    <p className="mt-2 inline-flex items-center gap-1 text-xs text-slate-400">
+                      <Activity className="h-3.5 w-3.5" />
+                      {disaster.area}
+                    </p>
+                  </button>
+                )
+              })}
+            </div>
+          )}
         </CardContent>
-      </Card>
-    </div>
+      </div>
+    </aside>
   )
 }

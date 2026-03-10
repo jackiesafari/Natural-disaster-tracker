@@ -1,0 +1,26 @@
+[
+  {
+    "id": "bird-001",
+    "animalType": "bird",
+    "species": "Swainson's Hawk",
+    "source": "movebank",
+    "observedAt": "2026-02-20T18:45:00Z",
+    "location": { "lat": 35.223, "lon": -101.831, "region": "Texas Panhandle" },
+    "metric": { "name": "movement_km_day", "value": 318, "unit": "km/day" },
+    "baseline": { "mean": 240, "stdDev": 32, "season": "late-winter migration" },
+    "quality": { "confidence": 0.9, "sampleSize": 48 },
+    "notes": "Higher-than-normal transit speed over 24h"
+  },
+  {
+    "id": "bird-002",
+    "animalType": "bird",
+    "species": "Lesser Yellowlegs",
+    "source": "movebank",
+    "observedAt": "2026-02-20T22:10:00Z",
+    "location": { "lat": 29.679, "lon": -95.412, "region": "Houston Metro" },
+    "metric": { "name": "stopover_duration_hr", "value": 6, "unit": "hours" },
+    "baseline": { "mean": 14, "stdDev": 4, "season": "coastal stopover" },
+    "quality": { "confidence": 0.83, "sampleSize": 31 },
+    "notes": "Unusually short stopover duration"
+  }
+]

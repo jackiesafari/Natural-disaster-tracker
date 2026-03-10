@@ -1,0 +1,181 @@
+{
+  "generatedAt": "2026-02-21T07:00:09.765Z",
+  "framework": {
+    "version": "1.0",
+    "style": "simple sequential agents",
+    "agents": [
+      "verifier",
+      "research",
+      "safety_resources"
+    ]
+  },
+  "input": {
+    "eventCount": 3,
+    "events": [
+      {
+        "id": 1,
+        "title": "Canyon Ridge Fire",
+        "location": "Los Angeles County, California",
+        "hazard": "wildfire"
+      },
+      {
+        "id": 2,
+        "title": "South Florida Tropical System (Sample)",
+        "location": "Miami-Dade, Florida",
+        "hazard": "hurricane"
+      },
+      {
+        "id": 3,
+        "title": "Bay Fault Sequence",
+        "location": "San Francisco Bay Area, California",
+        "hazard": "earthquake"
+      }
+    ]
+  },
+  "outputs": {
+    "verifier": {
+      "agent": "verifier",
+      "purpose": "Double-check event naming and obvious factual red flags",
+      "generatedAt": "2026-02-21T07:00:09.766Z",
+      "findings": [
+        {
+          "eventId": 1,
+          "eventTitle": "Canyon Ridge Fire",
+          "status": "pass",
+          "reasons": [
+            "No obvious placeholder keywords detected in title."
+          ],
+          "recommendedAction": "Keep, but still verify against NWS/USGS before publish."
+        },
+        {
+          "eventId": 2,
+          "eventTitle": "South Florida Tropical System (Sample)",
+          "status": "needs_review",
+          "reasons": [
+            "Contains placeholder/fictional indicator(s): sample"
+          ],
+          "recommendedAction": "Replace with verified naming from official feed or mark clearly as scenario."
+        },
+        {
+          "eventId": 3,
+          "eventTitle": "Bay Fault Sequence",
+          "status": "pass",
+          "reasons": [
+            "No obvious placeholder keywords detected in title."
+          ],
+          "recommendedAction": "Keep, but still verify against NWS/USGS before publish."
+        }
+      ]
+    },
+    "research": {
+      "agent": "research",
+      "purpose": "Primary-source research checklist for disaster prediction data",
+      "generatedAt": "2026-02-21T07:00:09.766Z",
+      "recommendations": [
+        {
+          "topic": "Hurricane forecast inputs",
+          "sources": [
+            "NWS API alerts (api.weather.gov)",
+            "NOAA/NHC advisories and forecast discussions"
+          ],
+          "nextStep": "Add parser for active basin systems and advisory metadata."
+        },
+        {
+          "topic": "Earthquake probabilistic nowcast inputs",
+          "sources": [
+            "USGS FDSN event feed",
+            "USGS OAF / ETAS guidance"
+          ],
+          "nextStep": "Backtest score calibration by region with rolling windows."
+        },
+        {
+          "topic": "Animal evidence expansion",
+          "sources": [
+            "Movebank MBI studies (North American bird telemetry)",
+            "Audubon Bird Migration Explorer for species/route prioritization"
+          ],
+          "nextStep": "Map selected bird species by hazard region and build lead-lag features."
+        }
+      ]
+    },
+    "safetyResources": {
+      "agent": "safety_resources",
+      "purpose": "Attach vetted safety/help resources for affected people",
+      "generatedAt": "2026-02-21T07:00:09.766Z",
+      "eventResources": [
+        {
+          "eventId": 1,
+          "eventTitle": "Canyon Ridge Fire",
+          "location": "Los Angeles County, California",
+          "hazard": "wildfire",
+          "resources": [
+            {
+              "label": "InciWeb Incident Information",
+              "url": "https://inciweb.wildfire.gov/"
+            },
+            {
+              "label": "AirNow Fire & Smoke Map",
+              "url": "https://fire.airnow.gov/"
+            },
+            {
+              "label": "Ready.gov Wildfires",
+              "url": "https://www.ready.gov/wildfires"
+            },
+            {
+              "label": "California Fire Foundation",
+              "url": "https://www.cafirefoundation.org/"
+            }
+          ]
+        },
+        {
+          "eventId": 2,
+          "eventTitle": "South Florida Tropical System (Sample)",
+          "location": "Miami-Dade, Florida",
+          "hazard": "hurricane",
+          "resources": [
+            {
+              "label": "FEMA Disaster Assistance",
+              "url": "https://www.disasterassistance.gov/"
+            },
+            {
+              "label": "NHC Public Advisories",
+              "url": "https://www.nhc.noaa.gov/"
+            },
+            {
+              "label": "Ready.gov Hurricanes",
+              "url": "https://www.ready.gov/hurricanes"
+            },
+            {
+              "label": "American Red Cross Shelter Finder",
+              "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html"
+            }
+          ]
+        },
+        {
+          "eventId": 3,
+          "eventTitle": "Bay Fault Sequence",
+          "location": "San Francisco Bay Area, California",
+          "hazard": "earthquake",
+          "resources": [
+            {
+              "label": "USGS Earthquake Hazards Program",
+              "url": "https://earthquake.usgs.gov/"
+            },
+            {
+              "label": "Ready.gov Earthquakes",
+              "url": "https://www.ready.gov/earthquakes"
+            },
+            {
+              "label": "FEMA Earthquake Safety",
+              "url": "https://www.fema.gov/emergency-managers/risk-management/earthquake"
+            },
+            {
+              "label": "American Red Cross Emergency App",
+              "url": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/mobile-apps.html"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-02-21T06:38:53.446Z",
+  "hasRawData": false,
+  "totals": {
+    "all": 4,
+    "alert": 1,
+    "watch": 3,
+    "normal": 0
+  },
+  "records": [
+    {
+      "id": "bird-001",
+      "animalType": "bird",
+      "species": "Swainson's Hawk",
+      "source": "movebank",
+      "observedAt": "2026-02-20T18:45:00Z",
+      "location": {
+        "lat": 35.223,
+        "lon": -101.831,
+        "region": "Texas Panhandle"
+      },
+      "metric": {
+        "name": "movement_km_day",
+        "value": 318,
+        "unit": "km/day"
+      },
+      "baseline": {
+        "mean": 240,
+        "stdDev": 32,
+        "season": "late-winter migration"
+      },
+      "quality": {
+        "confidence": 0.9,
+        "sampleSize": 48
+      },
+      "notes": "Higher-than-normal transit speed over 24h"
+    },
+    {
+      "id": "bird-002",
+      "animalType": "bird",
+      "species": "Lesser Yellowlegs",
+      "source": "movebank",
+      "observedAt": "2026-02-20T22:10:00Z",
+      "location": {
+        "lat": 29.679,
+        "lon": -95.412,
+        "region": "Houston Metro"
+      },
+      "metric": {
+        "name": "stopover_duration_hr",
+        "value": 6,
+        "unit": "hours"
+      },
+      "baseline": {
+        "mean": 14,
+        "stdDev": 4,
+        "season": "coastal stopover"
+      },
+      "quality": {
+        "confidence": 0.83,
+        "sampleSize": 31
+      },
+      "notes": "Unusually short stopover duration"
+    },
+    {
+      "id": "frog-001",
+      "animalType": "frog",
+      "species": "Green Treefrog",
+      "source": "acoustic-sensor",
+      "observedAt": "2026-02-20T04:30:00Z",
+      "location": {
+        "lat": 30.451,
+        "lon": -91.187,
+        "region": "Baton Rouge Wetlands"
+      },
+      "metric": {
+        "name": "call_rate_per_min",
+        "value": 2.1,
+        "unit": "calls/min"
+      },
+      "baseline": {
+        "mean": 5.6,
+        "stdDev": 1.3,
+        "season": "humid-night baseline"
+      },
+      "quality": {
+        "confidence": 0.76,
+        "sampleSize": 24
+      },
+      "notes": "Suppressed call activity relative to normal conditions"
+    },
+    {
+      "id": "frog-002",
+      "animalType": "frog",
+      "species": "American Bullfrog",
+      "source": "field-observer",
+      "observedAt": "2026-02-19T23:15:00Z",
+      "location": {
+        "lat": 32.754,
+        "lon": -117.144,
+        "region": "San Diego Watershed"
+      },
+      "metric": {
+        "name": "night_activity_index",
+        "value": 8.4,
+        "unit": "index"
+      },
+      "baseline": {
+        "mean": 5.1,
+        "stdDev": 1.4,
+        "season": "cool-season baseline"
+      },
+      "quality": {
+        "confidence": 0.68,
+        "sampleSize": 18
+      },
+      "notes": "Elevated nocturnal activity from observer logs"
+    }
+  ],
+  "features": [
+    {
+      "recordId": "bird-001",
+      "animalType": "bird",
+      "species": "Swainson's Hawk",
+      "zScore": 2.4375,
+      "anomalyLevel": "watch",
+      "observedAt": "2026-02-20T18:45:00Z",
+      "lat": 35.223,
+      "lon": -101.831,
+      "region": "Texas Panhandle"
+    },
+    {
+      "recordId": "bird-002",
+      "animalType": "bird",
+      "species": "Lesser Yellowlegs",
+      "zScore": -2,
+      "anomalyLevel": "watch",
+      "observedAt": "2026-02-20T22:10:00Z",
+      "lat": 29.679,
+      "lon": -95.412,
+      "region": "Houston Metro"
+    },
+    {
+      "recordId": "frog-001",
+      "animalType": "frog",
+      "species": "Green Treefrog",
+      "zScore": -2.692307692307692,
+      "anomalyLevel": "alert",
+      "observedAt": "2026-02-20T04:30:00Z",
+      "lat": 30.451,
+      "lon": -91.187,
+      "region": "Baton Rouge Wetlands"
+    },
+    {
+      "recordId": "frog-002",
+      "animalType": "frog",
+      "species": "American Bullfrog",
+      "zScore": 2.3571428571428577,
+      "anomalyLevel": "watch",
+      "observedAt": "2026-02-19T23:15:00Z",
+      "lat": 32.754,
+      "lon": -117.144,
+      "region": "San Diego Watershed"
+    }
+  ]
+}
